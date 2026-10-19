@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 48" width="240" height="48" role="img" aria-label="Leadabox">
+  <defs>
+    <linearGradient id="lbxLA" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#5d8cff"/>
+      <stop offset="1" stop-color="#7b2dff"/>
+    </linearGradient>
+    <linearGradient id="lbxLB" x1="0" y1="1" x2="1" y2="0">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#2d6cff"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <path d="M24 2 44 13v22L24 46 4 35V13z" fill="url(#lbxLA)"/>
+    <path d="M24 2 44 13 24 24 4 13z" fill="url(#lbxLB)" opacity=".9"/>
+    <path d="M24 24v22L4 35V13z" fill="#0b0e1f" opacity=".22"/>
+    <path d="M15 16.5v11.8l9 4.9" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" opacity=".95"/>
+    <circle cx="33" cy="20" r="3.4" fill="#fff" opacity=".95"/>
+  </g>
+  <text x="58" y="32" font-family="Inter, ui-sans-serif, system-ui, sans-serif" font-size="25" font-weight="650" letter-spacing="-0.6" fill="currentColor">Leadabox</text>
+</svg>
