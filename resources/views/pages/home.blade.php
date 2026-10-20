@@ -38,7 +38,7 @@
                     </div>
 
                     <ul class="reveal mt-12 grid gap-x-8 gap-y-3 sm:grid-cols-2" data-reveal-delay="320">
-                        @foreach (__('site.home.trust.items') as $item)
+                        @foreach (\App\Support\Locales::content('site.home.trust.items') as $item)
                             <li class="flex items-start gap-2.5 text-sm text-ink-300">
                                 <span class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-brand-300">
                                     <x-ui.icon name="check" class="h-3 w-3" />
@@ -135,7 +135,7 @@
 
             {{-- Stats --}}
             <dl class="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-3xl border border-white/10 bg-white/5 lg:mt-28 lg:grid-cols-4">
-                @foreach (__('site.home.stats') as $i => $stat)
+                @foreach (\App\Support\Locales::content('site.home.stats') as $i => $stat)
                     <div class="reveal bg-ink-950/60 p-6 text-center lg:p-8" data-reveal-delay="{{ $i * 70 }}">
                         <dt class="order-2 mt-2 text-sm text-ink-400">{{ $stat['label'] }}</dt>
                         <dd class="order-1 text-3xl font-bold text-white lg:text-4xl">

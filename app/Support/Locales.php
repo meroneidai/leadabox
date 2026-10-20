@@ -16,9 +16,13 @@ class Locales
         return array_keys(static::all());
     }
 
+    /**
+     * The site's base locale. Read from fallback_locale because setLocale()
+     * overwrites config('app.locale') with whatever the request resolved to.
+     */
     public static function default(): string
     {
-        return config('app.locale', 'en');
+        return config('app.fallback_locale', 'en');
     }
 
     public static function current(): string
@@ -80,6 +84,47 @@ class Locales
         }
 
         return route($scoped, $parameters);
+    }
+
+    /**
+     * Translation arrays merged key-by-key over the fallback locale.
+     *
+     * Laravel returns the current locale's array wholesale, so a partially
+     * translated group silently loses the keys it has not defined yet. This
+     * keeps every missing key resolving to English instead of exploding.
+     */
+    public static function content(string $key): array
+    {
+        $fallback = trans($key, [], static::default());
+        $fallback = is_array($fallback) ? $fallback : [];
+
+        if (static::current() === static::default()) {
+            return $fallback;
+        }
+
+        $current = trans($key);
+        $current = is_array($current) ? $current : [];
+
+        return static::mergeTranslations($fallback, $current);
+    }
+
+    private static function mergeTranslations(array $fallback, array $current): array
+    {
+        // Ordered lists (FAQs, stats) are all-or-nothing; mixing them by index
+        // would interleave two languages.
+        if (array_is_list($fallback) || array_is_list($current)) {
+            return $current !== [] ? $current : $fallback;
+        }
+
+        $merged = $fallback;
+
+        foreach ($current as $k => $value) {
+            $merged[$k] = is_array($value) && isset($fallback[$k]) && is_array($fallback[$k])
+                ? static::mergeTranslations($fallback[$k], $value)
+                : $value;
+        }
+
+        return $merged;
     }
 
     /**

@@ -29,7 +29,7 @@ class ContactController extends Controller
                 ['name' => __('site.nav.home'), 'url' => Locales::route('home')],
                 ['name' => __('site.nav.contact'), 'url' => $url],
             ])
-            ->faqs(__('site.contact.faqs'))
+            ->faqs(Locales::content('site.contact.faqs'))
             ->schema(Schema::webPage($url, __('site.contact.meta_title'), __('site.contact.meta_description')))
             ->schema([
                 '@type' => 'ContactPage',

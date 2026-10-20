@@ -217,6 +217,10 @@ return [
         'free_badge' => 'Gratis',
         'pro_badge' => 'Pro',
         'view_on_wp' => 'Visa på WordPress.org',
+        'impact_title' => 'Vad det faktiskt gör med din sajt',
+        'impact_body' => 'Bilder står normalt för 60–70 procent av en sidas totala vikt. Att minska det är den enskilt mest effektiva prestandaåtgärden de flesta sajter kan göra — och den är mätbar inom ett dygn.',
+        'specs_title' => 'Teknisk specifikation',
+        'how_title' => 'Så fungerar det, steg för steg',
 
         'items' => [
             'bitra-optimizer' => [
@@ -228,6 +232,78 @@ return [
                 'description' => 'Bitra Optimizer är ett gratis WordPress-plugin som komprimerar och konverterar hela mediebiblioteket till WebP lokalt — utan extern tjänst, bildkvot eller API-nyckel — och kan återställa varje original med ett klick.',
                 'intro_title' => 'Byggt för bibliotek som vuxit ur kontrollen',
                 'intro_body' => 'De flesta bildplugin laddar antingen upp dina filer till en extern tjänst med månadskvot, eller lämnar originalen kvar på disken för alltid. Bitra Optimizer gör ingetdera. Allt bearbetas på din egen server med det bildbibliotek WordPress redan har, och ersatta original tas faktiskt bort när alla referenser pekats om.',
+
+                'impact' => [
+                    ['value' => '60–80 %', 'label' => 'Mindre bildvikt', 'body' => 'WebP med kvalitet 82 är visuellt identiskt med JPEG för nästan all fotografi, till en bråkdel av antalet byte.'],
+                    ['value' => '1–3 s', 'label' => 'Snabbare Largest Contentful Paint', 'body' => 'LCP-elementet är en bild på de flesta sidor. Krymp den så rör sig det viktigaste Core Web Vitals-måttet direkt.'],
+                    ['value' => 'Upp till 50 %', 'label' => 'Återvunnet diskutrymme', 'body' => 'Ersatta original och byteidentiska dubbletter raderas, inte bara göms bakom en sidofil.'],
+                    ['value' => '0', 'label' => 'Externa tjänster', 'body' => 'Ingen API-nyckel, ingen månadskvot för bilder, ingen tredje part som håller i dina filer.'],
+                ],
+
+                'how' => [
+                    ['title' => 'Skanna', 'body' => 'Pluginet indexerar varje bilaga och varje referens till den i inlägg, egna fält, sidbyggar-JSON, webbplatsinställningar och det aktiva temats stilmall.'],
+                    ['title' => 'Säkerhetskopiera', 'body' => 'Varje original kopieras till en skyddad mapp utanför mediebiblioteket innan en enda byte rörs.'],
+                    ['title' => 'Komprimera', 'body' => 'Filerna omkodas via det bildbibliotek WordPress redan använder, nyaste uppladdningar först, i en avgränsad kö som överlever timeouts.'],
+                    ['title' => 'Konvertera', 'body' => 'En WebP-version (och valfritt AVIF) skapas och behålls bara när den verkligen är mindre än källfilen.'],
+                    ['title' => 'Peka om', 'body' => 'Varje lagrad referens skrivs om till det nya filnamnet — serialiserad data inkluderad — så att ingen länk, layout eller sidbyggare går sönder.'],
+                    ['title' => 'Återvinn', 'body' => 'Först när referenserna är säkert ompekade raderas de ersatta originalen och dubblettkopiorna.'],
+                ],
+
+                'specs' => [
+                    'Kräver WordPress 6.2+ och PHP 7.4+',
+                    'Fungerar med Imagick eller GD — det din värd erbjuder',
+                    'Format in: JPEG, PNG, WebP. Format ut: WebP, AVIF (valfritt)',
+                    'Animerad GIF och SVG lämnas medvetet orörda',
+                    'Levererar moderna format via <picture> med originalet som reserv',
+                    'Elementors bakgrundsbilder hanteras via CSS image-set()',
+                    'WP-CLI: scan, all, to-webp, dedupe, restore, status, recover',
+                    'Multisite-kompatibelt · GPLv2 · ingen telemetri',
+                ],
+
+                'features' => [
+                    'compression' => ['title' => 'Optimering med ett klick', 'body' => 'Köar hela biblioteket och tar nyaste uppladdningar först, så att färskt innehåll vinner direkt.'],
+                    'webp' => ['title' => 'Automatisk WebP', 'body' => 'Varje ny JPEG- och PNG-uppladdning lagras som en enda .webp-fil, med AVIF som tillval.'],
+                    'storage' => ['title' => 'Verklig lagringsbesparing', 'body' => 'Ersätter överflödiga original och tar bort byteidentiska dubbletter — efter att referenserna pekats om.'],
+                    'restore' => ['title' => 'Återställ med ett klick', 'body' => 'Varje original säkerhetskopieras före varje ändring. Återställ en bild, ett urval eller hela biblioteket.'],
+                    'queue' => ['title' => 'Får aldrig timeout', 'body' => 'En avgränsad, återupptagbar kö med omförsök och återhämtning — byggd för bibliotek med tiotusentals bilder.'],
+                    'local' => ['title' => '100 % lokalt', 'body' => 'Inget konto, ingen API-nyckel, ingen månadsgräns för bilder. Dina filer lämnar aldrig din server.'],
+                ],
+
+                'pro_features' => [
+                    'avif' => ['title' => 'AVIF-leverans', 'body' => 'Nästa generations format med automatisk reserv, för ytterligare 20–30 procent lägre bildvikt.'],
+                    'cdn' => ['title' => 'CDN-integration', 'body' => 'Skicka optimerade varianter direkt till Cloudflare, BunnyCDN eller din egen edge.'],
+                    'bulk' => ['title' => 'Massoptimering för flera sajter', 'body' => 'Optimera varje sajt i ett nätverk från en skärm, enligt ditt eget schema.'],
+                    'priority' => ['title' => 'Prioriterad support', 'body' => 'Direktkontakt med utvecklarna bakom pluginet, med svar inom en arbetsdag.'],
+                    'multisite' => ['title' => 'Multisite-hantering', 'body' => 'Centrala inställningar, undantag per sajt och rapportering för hela nätverket.'],
+                    'api' => ['title' => 'WP-CLI och REST API', 'body' => 'Automatisera optimeringen från din deploy-pipeline eller dina egna verktyg.'],
+                ],
+
+                'faqs' => [
+                    [
+                        'question' => 'Skickar Bitra Optimizer mina bilder till en extern tjänst?',
+                        'answer' => 'Nej. Varje bild komprimeras och konverteras på din egen server med det bildbibliotek WordPress redan använder — Imagick eller GD. Dina filer lämnar aldrig ditt webbhotell, det finns ingen månadskvot, och ett bibliotek med 50 000 bilder kostar exakt lika mycket som ett med 50: ingenting.',
+                    ],
+                    [
+                        'question' => 'Går mina befintliga bilder eller länkar sönder?',
+                        'answer' => 'Nej. När ett original ersätts av sin WebP-version pekas varje lagrad referens om först — inläggsinnehåll, egna fält, sidbyggar-JSON och webbplatsinställningar — så att befintliga länkar fortsätter fungera. Varje original kopieras dessutom till en skyddad säkerhetskopia innan något rörs.',
+                    ],
+                    [
+                        'question' => 'Kan jag ångra optimeringen?',
+                        'answer' => 'Ja, fullständigt. Under Spara lagring återställer "Återställ alla original" hela biblioteket till filerna du började med. Du kan också återställa en enskild bild eller ett urval från fliken Bilder, eller köra wp bitra-optimizer restore. Att optimera igen efteråt går alltid.',
+                    ],
+                    [
+                        'question' => 'Fungerar det med Elementor och sidbyggare?',
+                        'answer' => 'Ja. WebP-källor läggs till i renderade Elementor-widgetar, och CSS-bakgrundsbilder hanteras via Elementors image-set-integration. Sidbyggar-JSON ingår när referenser pekas om, vilket är exakt där de flesta andra plugin förstör layouter.',
+                    ],
+                    [
+                        'question' => 'Mitt bibliotek har 50 000 bilder. Blir det timeout?',
+                        'answer' => 'Nej. Arbetet körs genom en avgränsad kö som bearbetar en liten batch per anrop, sparar framsteg löpande, gör omförsök vid fel och återhämtar avbrutna jobb. För mycket stora bibliotek kan du växla till WP-CLI-läge och köra det från servern enligt ditt eget schema.',
+                    ],
+                    [
+                        'question' => 'Vad skiljer gratis från Pro?',
+                        'answer' => 'Gratisversionen på WordPress.org gör hela jobbet: komprimering, WebP-konvertering, borttagning av dubbletter, återvunnet lagringsutrymme och fullständig återställning. Pro lägger till AVIF-leverans, CDN-integration, multisite-hantering, schemalagda massoptimeringar över nätverk och prioriterad support — funktioner som spelar roll för byråer med många sajter.',
+                    ],
+                ],
             ],
         ],
     ],

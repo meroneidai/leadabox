@@ -499,6 +499,10 @@ return [
         'free_badge' => 'Free',
         'pro_badge' => 'Pro',
         'view_on_wp' => 'View on WordPress.org',
+        'impact_title' => 'What it actually does to your site',
+        'impact_body' => 'Images are typically 60–70% of a page\'s total weight. Cutting that is the single highest-leverage performance change most sites can make — and it is measurable within a day.',
+        'specs_title' => 'Technical specification',
+        'how_title' => 'How it works, step by step',
 
         'faqs' => [
             [
@@ -526,6 +530,33 @@ return [
                 'description' => 'Bitra Optimizer is a free WordPress plugin that compresses and converts your entire media library to WebP locally — no external service, no image quota, no API key — and can restore every original with one click.',
                 'intro_title' => 'Built for libraries that got out of hand',
                 'intro_body' => 'Most image plugins either upload your media to a third-party service with a monthly quota, or they leave the original files sitting on disk forever. Bitra Optimizer does neither. Everything is processed on your own server by the image library WordPress already has, and superseded originals are genuinely removed once every reference has been repointed — so a 40GB uploads folder actually becomes smaller.',
+
+                'impact' => [
+                    ['value' => '60–80%', 'label' => 'Smaller image payload', 'body' => 'WebP at quality 82 is visually identical to JPEG for almost all photography, at a fraction of the bytes.'],
+                    ['value' => '1–3s', 'label' => 'Faster Largest Contentful Paint', 'body' => 'The LCP element is an image on most pages. Shrink it and the headline Core Web Vitals metric moves immediately.'],
+                    ['value' => 'Up to 50%', 'label' => 'Disk space reclaimed', 'body' => 'Superseded originals and byte-identical duplicates are deleted, not just hidden behind a sidecar file.'],
+                    ['value' => '0', 'label' => 'External services', 'body' => 'No API key, no monthly image quota, no third party holding your media.'],
+                ],
+
+                'how' => [
+                    ['title' => 'Scan', 'body' => 'The plugin indexes every attachment plus every reference to it across posts, custom fields, page-builder JSON, site options and the active theme stylesheet.'],
+                    ['title' => 'Back up', 'body' => 'Each original is copied to a protected folder outside the media library before a single byte is touched.'],
+                    ['title' => 'Compress', 'body' => 'Files are re-encoded through the image editor WordPress already uses, newest uploads first, in a bounded queue that survives timeouts.'],
+                    ['title' => 'Convert', 'body' => 'A WebP (and optionally AVIF) version is generated and kept only when it is genuinely smaller than the source.'],
+                    ['title' => 'Repoint', 'body' => 'Every stored reference is rewritten to the new filename — serialized data included — so no link, no layout and no page builder breaks.'],
+                    ['title' => 'Reclaim', 'body' => 'Only once references are safely repointed are the superseded originals and duplicate copies deleted.'],
+                ],
+
+                'specs' => [
+                    'Requires WordPress 6.2+ and PHP 7.4+',
+                    'Works with Imagick or GD — whichever your host provides',
+                    'Formats in: JPEG, PNG, WebP. Formats out: WebP, AVIF (optional)',
+                    'Animated GIF and SVG are left untouched by design',
+                    'Serves modern formats via <picture> with the original as fallback',
+                    'Elementor background images handled through CSS image-set()',
+                    'WP-CLI: scan, all, to-webp, dedupe, restore, status, recover',
+                    'Multisite compatible · GPLv2 · no telemetry',
+                ],
 
                 'features' => [
                     'compression' => ['title' => 'One-click optimisation', 'body' => 'Queues your entire library and processes newest uploads first, so recent content benefits immediately.'],

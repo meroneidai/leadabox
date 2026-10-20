@@ -18,9 +18,9 @@ class PageController extends Controller
             ->title(__('site.home.meta_title'))
             ->description(__('site.home.meta_description'))
             ->canonical($url)
-            ->keywords(__('site.home.keywords'))
+            ->keywords(Locales::content('site.home.keywords'))
             ->image(asset('images/hero/leadabox-studio.jpg'), __('site.home.hero_image_alt'))
-            ->faqs(__('site.home.faqs'))
+            ->faqs(Locales::content('site.home.faqs'))
             ->schema(Schema::webPage($url, __('site.home.meta_title'), __('site.home.meta_description')))
             ->schema(Schema::itemList(__('site.services.title'), $this->serviceLinks()));
 
@@ -43,9 +43,9 @@ class PageController extends Controller
             ->title(__('site.services.meta_title'))
             ->description(__('site.services.meta_description'))
             ->canonical($url)
-            ->keywords(__('site.services.keywords'))
+            ->keywords(Locales::content('site.services.keywords'))
             ->breadcrumbs($this->crumbs([['services', __('site.nav.services')]]))
-            ->faqs(__('site.services.faqs'))
+            ->faqs(Locales::content('site.services.faqs'))
             ->schema(Schema::webPage($url, __('site.services.meta_title'), __('site.services.meta_description')))
             ->schema(Schema::itemList(__('site.services.title'), $this->serviceLinks()));
 
@@ -64,7 +64,7 @@ class PageController extends Controller
         }
 
         $url = Locales::route('service', ['service' => $service]);
-        $copy = __("site.services.items.{$service}");
+        $copy = Locales::content("site.services.items.{$service}");
 
         $seo = Seo::make()
             ->title($copy['meta_title'])
@@ -97,9 +97,9 @@ class PageController extends Controller
             ->title(__('site.agents.meta_title'))
             ->description(__('site.agents.meta_description'))
             ->canonical($url)
-            ->keywords(__('site.agents.keywords'))
+            ->keywords(Locales::content('site.agents.keywords'))
             ->breadcrumbs($this->crumbs([['ai-agents', __('site.nav.agents')]]))
-            ->faqs(__('site.agents.faqs'))
+            ->faqs(Locales::content('site.agents.faqs'))
             ->schema(Schema::webPage($url, __('site.agents.meta_title'), __('site.agents.meta_description')))
             ->schema(Schema::service($url, __('site.agents.title'), __('site.agents.meta_description')));
 
@@ -118,7 +118,7 @@ class PageController extends Controller
             ->description(__('site.products.meta_description'))
             ->canonical($url)
             ->breadcrumbs($this->crumbs([['products', __('site.nav.products')]]))
-            ->faqs(__('site.products.faqs'))
+            ->faqs(Locales::content('site.products.faqs'))
             ->schema(Schema::webPage($url, __('site.products.meta_title'), __('site.products.meta_description')));
 
         return view('pages.products', [
@@ -136,7 +136,7 @@ class PageController extends Controller
         }
 
         $url = Locales::route('product', ['product' => $product]);
-        $copy = __("site.products.items.{$product}");
+        $copy = Locales::content("site.products.items.{$product}");
 
         $seo = Seo::make()
             ->title($copy['meta_title'])
@@ -169,7 +169,7 @@ class PageController extends Controller
             ->description(__('site.cases.meta_description'))
             ->canonical($url)
             ->breadcrumbs($this->crumbs([['cases', __('site.nav.cases')]]))
-            ->faqs(__('site.cases.faqs'))
+            ->faqs(Locales::content('site.cases.faqs'))
             ->schema(Schema::webPage($url, __('site.cases.meta_title'), __('site.cases.meta_description')));
 
         return view('pages.cases', [
@@ -187,7 +187,7 @@ class PageController extends Controller
         }
 
         $url = Locales::route('case', ['case' => $case]);
-        $copy = __("site.cases.items.{$case}");
+        $copy = Locales::content("site.cases.items.{$case}");
 
         $seo = Seo::make()
             ->title($copy['meta_title'])
@@ -221,7 +221,7 @@ class PageController extends Controller
             ->description(__('site.about.meta_description'))
             ->canonical($url)
             ->breadcrumbs($this->crumbs([['about', __('site.nav.about')]]))
-            ->faqs(__('site.about.faqs'))
+            ->faqs(Locales::content('site.about.faqs'))
             ->schema(Schema::webPage($url, __('site.about.meta_title'), __('site.about.meta_description')));
 
         return view('pages.about', ['seo' => $seo]);
@@ -237,7 +237,7 @@ class PageController extends Controller
                 ->description(__('site.legal.privacy.description'))
                 ->canonical($url)
                 ->breadcrumbs($this->crumbs([['privacy', __('site.legal.privacy.title')]])),
-            'copy' => __('site.legal.privacy'),
+            'copy' => Locales::content('site.legal.privacy'),
         ]);
     }
 
@@ -251,7 +251,7 @@ class PageController extends Controller
                 ->description(__('site.legal.terms.description'))
                 ->canonical($url)
                 ->breadcrumbs($this->crumbs([['terms', __('site.legal.terms.title')]])),
-            'copy' => __('site.legal.terms'),
+            'copy' => Locales::content('site.legal.terms'),
         ]);
     }
 

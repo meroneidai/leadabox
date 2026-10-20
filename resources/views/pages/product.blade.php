@@ -39,13 +39,35 @@
         </div>
     </section>
 
+    {{-- Impact --}}
+    @if (! empty($copy['impact']))
+        <section class="relative py-16 lg:py-24">
+            <div class="mx-auto max-w-7xl px-5 sm:px-8">
+                <x-ui.section-heading
+                    :title="__('site.products.impact_title')"
+                    :body="__('site.products.impact_body')"
+                />
+
+                <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+                    @foreach ($copy['impact'] as $metric)
+                        <div class="reveal rounded-2xl border border-white/10 bg-white/[0.03] p-6" data-reveal-delay="{{ $loop->index * 70 }}">
+                            <p class="text-3xl font-bold text-gradient lg:text-4xl">{{ $metric['value'] }}</p>
+                            <h3 class="mt-3 text-sm font-semibold text-white">{{ $metric['label'] }}</h3>
+                            <p class="mt-2 text-sm leading-relaxed text-ink-400">{{ $metric['body'] }}</p>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </section>
+    @endif
+
     {{-- Free features --}}
     <section class="relative py-16 lg:py-24">
         <div class="mx-auto max-w-7xl px-5 sm:px-8">
             <x-ui.section-heading :title="__('site.common.what_we_deliver')" />
 
             <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                @foreach ($copy['features'] as $key => $feature)
+                @foreach ($copy['features'] ?? [] as $key => $feature)
                     <div class="reveal rounded-2xl border border-white/10 bg-white/[0.03] p-6" data-reveal-delay="{{ $loop->index * 60 }}">
                         <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-400/15 text-emerald-300 ring-1 ring-inset ring-white/10">
                             <x-ui.icon name="check" class="h-4 w-4" />
@@ -76,7 +98,7 @@
                         <p class="mt-4 max-w-2xl text-pretty leading-relaxed text-ink-300">{{ __('site.products.pro_body') }}</p>
 
                         <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-                            @foreach ($copy['pro_features'] as $key => $feature)
+                            @foreach ($copy['pro_features'] ?? [] as $key => $feature)
                                 <div class="rounded-2xl border border-white/10 bg-white/[0.04] p-6">
                                     <span class="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-500/20 text-brand-200 ring-1 ring-inset ring-white/10">
                                         <x-ui.icon name="bolt" class="h-4 w-4" />
@@ -93,6 +115,54 @@
                             <x-ui.icon name="arrow" class="h-4 w-4 rtl:rotate-180" />
                         </a>
                     </div>
+                </div>
+            </div>
+        </section>
+    @endif
+
+    {{-- How it works + specs --}}
+    @if (! empty($copy['how']) || ! empty($copy['specs']))
+        <section class="relative py-16 lg:py-24">
+            <div class="mx-auto max-w-7xl px-5 sm:px-8">
+                <div class="grid gap-12 lg:grid-cols-[1.25fr_0.75fr] lg:gap-16">
+
+                    @if (! empty($copy['how']))
+                        <div>
+                            <x-ui.section-heading :title="__('site.products.how_title')" />
+
+                            <ol class="mt-10 space-y-4">
+                                @foreach ($copy['how'] as $step)
+                                    <li class="reveal flex gap-5 rounded-2xl border border-white/10 bg-white/[0.03] p-6" data-reveal-delay="{{ $loop->index * 50 }}">
+                                        <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-brand-500/20 text-sm font-bold text-brand-200 ring-1 ring-inset ring-white/10">
+                                            {{ $loop->iteration }}
+                                        </span>
+                                        <div>
+                                            <h3 class="font-semibold text-white">{{ $step['title'] }}</h3>
+                                            <p class="mt-1.5 text-sm leading-relaxed text-ink-400">{{ $step['body'] }}</p>
+                                        </div>
+                                    </li>
+                                @endforeach
+                            </ol>
+                        </div>
+                    @endif
+
+                    @if (! empty($copy['specs']))
+                        <div class="lg:sticky lg:top-28 lg:self-start">
+                            <h2 class="reveal text-sm font-semibold uppercase tracking-[0.14em] text-ink-400">
+                                {{ __('site.products.specs_title') }}
+                            </h2>
+                            <ul class="reveal mt-6 space-y-3 rounded-2xl border border-white/10 bg-white/[0.03] p-6" data-reveal-delay="80">
+                                @foreach ($copy['specs'] as $spec)
+                                    <li class="flex items-start gap-2.5 text-sm text-ink-300">
+                                        <span class="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-emerald-400/20 text-emerald-300">
+                                            <x-ui.icon name="check" class="h-2.5 w-2.5" />
+                                        </span>
+                                        {{ $spec }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
         </section>

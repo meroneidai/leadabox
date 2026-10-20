@@ -23,7 +23,7 @@
     <section class="relative py-16 lg:py-24">
         <div class="mx-auto max-w-7xl px-5 sm:px-8">
             <div class="grid gap-5 sm:grid-cols-2">
-                @foreach (__('site.about.values') as $value)
+                @foreach (\App\Support\Locales::content('site.about.values') as $value)
                     <div class="reveal rounded-2xl border border-white/10 bg-white/[0.03] p-8" data-reveal-delay="{{ $loop->index * 70 }}">
                         <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-brand-400/25 to-violet-500/25 text-brand-200 ring-1 ring-inset ring-white/10">
                             <x-ui.icon name="shield" class="h-5 w-5" />

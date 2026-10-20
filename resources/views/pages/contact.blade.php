@@ -50,7 +50,7 @@
                                 </x-form.select>
 
                                 <x-form.select name="budget" :label="__('site.contact.form.budget')" :placeholder="__('site.contact.form.budget_placeholder')">
-                                    @foreach (__('site.contact.budgets') as $key => $label)
+                                    @foreach (\App\Support\Locales::content('site.contact.budgets') as $key => $label)
                                         <option value="{{ $key }}" @selected(old('budget') === $key)>{{ $label }}</option>
                                     @endforeach
                                 </x-form.select>
